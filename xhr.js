@@ -7,7 +7,7 @@
  */
 
 /**
- * XMLHttpRequest Function v 0.1.0
+ * XMLHttpRequest Function v 1.0.0
  *
  * @param {*} request - the request object
  * @param {string} request.url - request url

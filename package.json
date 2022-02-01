@@ -1,0 +1,22 @@
+{
+  "name": "xhr-wrapper",
+  "version": "1.0.0",
+  "description": "a wrapper for an XMLHttpRequest with abort token and progress handling",
+  "main": "xhr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aslamhus/xhr-wrapper.git"
+  },
+  "keywords": [
+    "xhr"
+  ],
+  "author": "Aslam Husain <aslam.percy.husain@gmail.com> (https://github.com/aslamhus)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aslamhus/xhr-wrapper/issues"
+  },
+  "homepage": "https://github.com/aslamhus/xhr-wrapper#readme"
+}
