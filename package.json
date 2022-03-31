@@ -1,5 +1,5 @@
 {
-  "name": "xhr-wrapper",
+  "name": "@aslamhus/xhr-wrapper",
   "version": "1.0.0",
   "description": "a wrapper for an XMLHttpRequest with abort token and progress handling",
   "main": "xhr.js",
