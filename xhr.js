@@ -61,14 +61,14 @@ const xhr = ({
         if (onError instanceof Function) {
           onError({ status: xhr.status, response: xhr.responseText });
         }
-        reject(new Error('Request failed. The server responded with a status of ' + xhr.status));
+        reject(new Error(xhr.status));
       }
       let response;
       try {
         response = JSON.parse(xhr.responseText);
-      } catch (err) {
+      } catch (JSONerror) {
         // handle response parse error
-        reject(new Error('Error parsing response: ' + err));
+        reject(JSONerror);
       }
       // successful request
       resolve(response);
