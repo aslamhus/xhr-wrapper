@@ -12,7 +12,6 @@
  * @param {*} request - the request object
  * @param {string} request.url - request url
  * @param {string} request.method - default is 'POST'
- * @param {string} request.contentType - default is 'application/json'
  * @param {Object} request.headers - additional headers (i.e. authorization)
  * @param {string|Object|Array} request.data - the data to send
  * @param {Function} request.onProgress - callback on xhr.upload.onprogress (params: {string} percentLoaded, {object} event data)
@@ -33,8 +32,7 @@
 const xhr = ({
   url = '',
   method = 'POST',
-  contentType = 'application/json',
-  headers = null,
+  headers = {},
   data = null,
   onProgress = null,
   onComplete = null,
@@ -44,7 +42,7 @@ const xhr = ({
   const xhr = new XMLHttpRequest();
   return new Promise((resolve, reject) => {
     xhr.open(method, url);
-    xhr.setRequestHeader('content-type', contentType);
+    // set headers
     if (headers) {
       Object.entries(headers).forEach((header) => {
         const [key, value] = header;
@@ -79,6 +77,7 @@ const xhr = ({
       }
     };
     xhr.upload.onprogress = (e) => {
+      console.log('onprogress', e);
       if (onProgress instanceof Function) {
         var percentLoaded = Math.ceil((e.loaded / e.total) * 100);
         onProgress(percentLoaded, e);
