@@ -4,6 +4,7 @@
  * - added headers property to JSDoc
  * - fixed bug with getting headers
  * - changed default of contenType to 'application/json'
+ * - changed abort method from abort.cancel to abort.abort
  */
 
 /**
@@ -18,13 +19,14 @@
  * @param {Function} request.onComplete - callback on request/upload complete
  * @param {Function} request.onError - callback on xhr error
  * @param {Object} request.abort - aborts xhr request and rejects promise.
+ * @param {boolean} request.withCredentials - default is true
  *
  * Using an abort token example:
  *
  * @example
- * const cancelToken = {};
- * const xhr = xhr({ ... abort : cancelToken })
- * cancelToken.abort();
+ * const abortToken = {};
+ * const xhr = xhr({ ... abort : abortToken })
+ * abortToken.abort();
  *
  * @returns Promise - resolves to response from request
  *
@@ -38,10 +40,13 @@ const xhr = ({
   onComplete = null,
   onError = null,
   abort = {},
+  withCredentials = true,
 }) => {
   const xhr = new XMLHttpRequest();
   return new Promise((resolve, reject) => {
     xhr.open(method, url);
+    // credentials
+    xhr.withCredentials = withCredentials;
     // set headers
     if (headers) {
       Object.entries(headers).forEach((header) => {
@@ -49,7 +54,7 @@ const xhr = ({
         xhr.setRequestHeader(key, value);
       });
     }
-    abort.cancel = () => {
+    abort.abort = () => {
       xhr.abort();
       reject(new Error('aborted xhr request to ' + url));
     };
